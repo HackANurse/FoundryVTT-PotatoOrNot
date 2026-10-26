@@ -12,6 +12,10 @@ This release targets Foundry VTT 14 and dnd5e 6.0.6. It changes Foundry's client
 - Removed bundled third-party image assets from this community package. The selection dialog now uses a text symbol.
 - Retained the upstream GNU GPL v3 license and original author attribution.
 
+## Support this community fork
+
+If this independently maintained update is useful to you, you can [buy HackANurse a coffee](https://buymeacoffee.com/andybegh). Contributions through this link support the maintainer of this fork; they are not donations to Wasp or Fantasy Computerworks, the original developers credited below.
+
 ## Install and publish
 
 The GitHub repository should contain `module.json` at its root. To install manually, copy these files into `{Foundry user data}/Data/modules/potato-or-not/` and enable the module in a world.
