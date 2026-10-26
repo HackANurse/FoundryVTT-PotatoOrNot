@@ -5,7 +5,7 @@
 	<div class='potato-master-container'>
 		<div class='potato-level-container' level='0' {{#if (eq potato_quality 0)}} active="true" {{/if}} >
 			<div class="potato-level-row">
-				<img src='modules/potato-or-not/styles/img/bad_potato.jpg'>
+				<span aria-hidden="true" class="potato-icon">🥔</span>
 			</div>
 			<div class="potato-level-row-text">
 				<h2>{{ localize "PotatoOrNot.BadTitle" }}</h2>
@@ -14,7 +14,7 @@
 		</div>
 		<div class='potato-level-container' level='1' {{#if (eq potato_quality 1)}} active="true" {{/if}} >
 			<div class="potato-level-row">
-				<img src='modules/potato-or-not/styles/img/potato.png'>
+				<span aria-hidden="true" class="potato-icon">🥔</span>
 			</div>
 			<div class="potato-level-row-text">
 				<h2>{{ localize "PotatoOrNot.MediumTitle" }}</h2>
@@ -23,7 +23,7 @@
 		</div>
 		<div class='potato-level-container' level='2' {{#if (eq potato_quality 2)}} active="true" {{/if}} >
 			<div class="potato-level-row">
-				<img src='modules/potato-or-not/styles/img/good_potato.jpg'>
+				<span aria-hidden="true" class="potato-icon">🥔</span>
 			</div>
 			<div class="potato-level-row-text">
 				<h2>{{ localize "PotatoOrNot.GoodTitle" }}</h2>
@@ -34,7 +34,7 @@
 
 	<hr>
 
-	<button class="dialog-button" data-button="confirm">
+	<button type="submit" class="dialog-button" data-button="confirm">
 		<i class="fa-solid fa-potato"></i>
 		{{ localize "PotatoOrNot.Accept" }}
 	</button>

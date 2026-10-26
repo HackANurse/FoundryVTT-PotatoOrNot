@@ -1,18 +1,19 @@
 {
   "id": "potato-or-not",
-  "title": "Potato Or Not",
-  "description": "Is your computer a potato or not? If so, this mod will prompt you that you might want to turn down your graphics.",
-  "version": "0.5.1",
+  "title": "Potato Or Not (Foundry 14 community update)",
+  "description": "Client graphics presets. Community update of Potato Or Not by Fantasy Computerworks and Wasp.",
+  "version": "0.6.0-v14.1",
   "compatibility": {
-    "minimum": "13",
-    "verified": "13",
-    "maximum": "13"
+    "minimum": "14"
   },
   "authors": [
     {
-      "name": "Wasp",
-      "url": "https://github.com/Haxxer",
-      "discord": "Wasp#2005"
+      "name": "Wasp (original author)",
+      "url": "https://github.com/Haxxer"
+    },
+    {
+      "name": "Fantasy Computerworks (original project)",
+      "url": "https://github.com/fantasycalendar/FoundryVTT-PotatoOrNot"
     }
   ],
   "esmodules": [
@@ -58,10 +59,6 @@
       "path": "languages/ja.json"
     }
   ],
-  "url": "https://github.com/fantasycalendar/FoundryVTT-PotatoOrNot",
-  "manifest": "https://github.com/fantasycalendar/FoundryVTT-PotatoOrNot/releases/latest/download/manifest.json",
-  "download": "https://github.com/fantasycalendar/FoundryVTT-PotatoOrNot/releases/latest/download/module.zip",
-  "readme": "https://github.com/fantasycalendar/FoundryVTT-PotatoOrNot/blob/master/README.md",
-  "bugs": "https://github.com/fantasycalendar/FoundryVTT-PotatoOrNot/issues"
+  "license": "LICENSE",
+  "readme": "README.md"
 }
-
