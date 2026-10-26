@@ -20,10 +20,15 @@ dist = ROOT / "dist"
 dist.mkdir(exist_ok=True)
 (dist / "module.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n")
 with zipfile.ZipFile(dist / "module.zip", "w", zipfile.ZIP_DEFLATED) as archive:
-    for path in ROOT.rglob("*"):
-        if not path.is_file() or dist in path.parents or ".git" in path.parts:
-            continue
-        relative = path.relative_to(ROOT)
+    files = [Path("module.json"), Path("LICENSE"), Path("README.md"),
+             Path("scripts/main.js"), Path("scripts/constants.js"),
+             Path("scripts/lib.js"), Path("styles/styles.css"),
+             Path("templates/potato-template.hbs")]
+    files.extend(Path("languages") / path.name for path in sorted((ROOT / "languages").glob("*.json")))
+    for relative in files:
+        path = ROOT / relative
+        if not path.is_file():
+            raise SystemExit(f"Missing release file: {relative}")
         if relative == Path("module.json"):
             archive.writestr("module.json", (dist / "module.json").read_bytes())
         else:
