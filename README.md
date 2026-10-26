@@ -16,7 +16,9 @@ This release targets Foundry VTT 14 and dnd5e 6.0.6. It changes Foundry's client
 
 The GitHub repository should contain `module.json` at its root. To install manually, copy these files into `{Foundry user data}/Data/modules/potato-or-not/` and enable the module in a world.
 
-For GitHub Releases, run the included `scripts/build-release.py` from the repository root. It creates `dist/module.zip` with `module.json` at the ZIP root and `dist/module.json`. Set `POTATO_OR_NOT_REPO` to your GitHub `owner/repo`; the release manifest will then use URLs for that repository and the current version. Upload both files to a release tagged `v0.6.0-v14.1`. Install the release using `https://github.com/OWNER/REPO/releases/latest/download/module.json` after replacing `OWNER/REPO`.
+The [HackANurse fork](https://github.com/HackANurse/FoundryVTT-PotatoOrNot) builds and publishes its release through `.github/workflows/main.yml`. The release package includes only the module source files listed in `scripts/build-release.py`; original image assets in the fork are excluded. The first release is tagged `v0.6.0-v14.1`. Once published, install it with `https://github.com/HackANurse/FoundryVTT-PotatoOrNot/releases/latest/download/module.json`.
+
+For a manual rebuild, run `POTATO_OR_NOT_REPO=HackANurse/FoundryVTT-PotatoOrNot python3 scripts/build-release.py` from the repository root and upload `dist/module.json` and `dist/module.zip` to a matching GitHub release.
 
 ## License and credits
 
