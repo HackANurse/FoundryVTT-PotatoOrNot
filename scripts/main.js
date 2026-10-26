@@ -1,7 +1,9 @@
+// Modified 26 October 2026 for Foundry VTT 14. Original Potato Or Not by
+// Wasp and Fantasy Computerworks. GNU GPL v3; see LICENSE and README.md.
 import CONSTANTS from "./constants.js";
 import * as lib from "./lib.js";
 
-Hooks.on("ready", () => {
+Hooks.once("init", () => {
 
     window.PotatoOrNot = new PotatoOrNotHandler();
 
@@ -9,11 +11,9 @@ Hooks.on("ready", () => {
 
     Hooks.call("PotatoOrNotReady");
 
-    setTimeout(() => {
-        window.PotatoOrNot.postSetup();
-    }, 250);
-
 });
+
+Hooks.once("ready", () => window.PotatoOrNot?.postSetup());
 
 class PotatoOrNotHandler {
 
@@ -85,7 +85,7 @@ class PotatoOrNotHandler {
         if (!hasBeenPrompted && promptUsers) {
             this.showDialog();
         } else if (currentNumberOfSettings !== numberOfSettings) {
-            this.updateSettings();
+            void this.updateSettings();
         }
     }
 
@@ -95,12 +95,13 @@ class PotatoOrNotHandler {
 
         let currentNumberOfSettings = this.numberOfSettings[this.quality];
 
-        await lib.setSetting(CONSTANTS.SETTING_KEYS.NUMBER_OF_SETTINGS, currentNumberOfSettings);
         await lib.setSetting(CONSTANTS.SETTING_KEYS.POTATO_LEVEL, this.quality);
 
         for (let module of modules) {
             for (let [setting, value] of Object.entries(this.current_settings[module])) {
                 try {
+                    if (!game.settings.settings.has(`${module}.${setting}`)) continue;
+                    if (game.settings.get(module, setting) === value) continue;
                     await game.settings.set(module, setting, value);
                     console.log(`Potato Or Not | Set ${module}.${setting} to ${value}`);
                 } catch (err) {
@@ -109,7 +110,7 @@ class PotatoOrNotHandler {
             }
         }
 
-        //window.location.reload();
+        await lib.setSetting(CONSTANTS.SETTING_KEYS.NUMBER_OF_SETTINGS, currentNumberOfSettings);
 
     }
 
@@ -139,7 +140,7 @@ class PotatoOrNotHandler {
 
         this._quality = quality_level;
 
-        this.updateSettings();
+        void this.updateSettings();
     }
 
     /**
@@ -248,7 +249,7 @@ class PotatoOrNotApplication extends foundry.applications.api.HandlebarsApplicat
         const level = form.querySelector(`.potato-level-container[active]`)
         if(!level) return;
         PotatoOrNot.quality = Number(level.getAttribute("level"));
-        lib.setSetting(CONSTANTS.SETTING_KEYS.HAS_BEEN_PROMPTED, true);
+        await lib.setSetting(CONSTANTS.SETTING_KEYS.HAS_BEEN_PROMPTED, true);
     }
 
     /** @override */
@@ -258,7 +259,7 @@ class PotatoOrNotApplication extends foundry.applications.api.HandlebarsApplicat
         for(let element of elements) {
             element.addEventListener("click", this._selectedPotatoLevel.bind(this));
         }
-        game.settings.sheet.close();
+        game.settings.sheet?.close();
     }
 
     _selectedPotatoLevel(event) {
@@ -272,47 +273,9 @@ class PotatoOrNotApplication extends foundry.applications.api.HandlebarsApplicat
 
     async _prepareContext() {
         return {
+            ...await super._prepareContext(),
             potato_quality: PotatoOrNot.quality,
         }
     }
-
-    /* -------------------------------------------- */
-
-    //
-    // /* -------------------------------------------- */
-    //
-    // /** @override */
-    // getData() {
-    //     let data = super.getData();
-    //     data.potato_quality = this.potato_quality;
-    //     return data;
-    // }
-    //
-    // /* -------------------------------------------- */
-    //
-    // /** @override */
-    // activateListeners(html) {
-    //     super.activateListeners(html);
-    //     let btn = html.find(".potato-level-container");
-    //     btn.on("click", this._selectedPotatoLevel.bind(this));
-    //     setTimeout(() => this.setPosition(), 50);
-    // }
-    //
-    // /* -------------------------------------------- */
-    //
-    // _selectedPotatoLevel(event) {
-    //     event.preventDefault();
-    //     const btn = $(event.currentTarget);
-    //     this.potato_quality = Number(btn.attr("level"));
-    //     btn.attr('active', true);
-    //     this._element.find(".potato-level-container").not(btn).removeAttr("active");
-    // }
-    //
-    // /* -------------------------------------------- */
-    //
-    // async _updateObject(event, formData) {
-    //     PotatoOrNot.quality = this.potato_quality;
-    //     lib.setSetting(CONSTANTS.SETTING_KEYS.HAS_BEEN_PROMPTED, true);
-    // }
 
 }

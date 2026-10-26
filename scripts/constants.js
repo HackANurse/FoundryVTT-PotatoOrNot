@@ -1,3 +1,5 @@
+// Presets from Potato Or Not by Wasp and Fantasy Computerworks (GNU GPL v3).
+// Community package updated 26 October 2026; see LICENSE and README.md.
 const CONSTANTS = {
   MODULE_NAME: "potato-or-not"
 }
