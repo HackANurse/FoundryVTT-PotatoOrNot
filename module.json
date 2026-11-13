@@ -1,10 +1,10 @@
 {
   "id": "potato-or-not",
   "title": "Potato Or Not (Foundry 14 community update)",
-  "description": "Client graphics presets. Community update of Potato Or Not by Fantasy Computerworks and Wasp.",
-  "version": "0.6.0-v14.1",
+  "description": "Client graphics presets. Community update of Potato Or Not by Fantasy Computerworks and Wasp. Targets Foundry VTT 14.370 and dnd5e 6.1.0.",
+  "version": "0.6.1",
   "compatibility": {
-    "minimum": "14"
+    "minimum": "14.370"
   },
   "authors": [
     {
