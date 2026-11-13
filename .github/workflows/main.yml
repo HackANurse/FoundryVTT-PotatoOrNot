@@ -25,7 +25,7 @@ jobs:
         run: |
           VERSION=$(python3 -c "import json; print(json.load(open('module.json'))['version'])")
           gh release create "v${VERSION}" dist/module.json dist/module.zip \
-            --title "Potato Or Not ${VERSION} (Foundry 14)" \
-            --notes "Community update of Potato Or Not by Wasp and Fantasy Computerworks. GNU GPL v3. Foundry VTT 14 and dnd5e 6.0.6 target; live compatibility testing remains pending." \
+            --title "Potato Or Not ${VERSION} (Foundry 14.370)" \
+            --notes "Community update of Potato Or Not by Wasp and Fantasy Computerworks. GNU GPL v3. Foundry VTT 14.370 and dnd5e 6.1.0 target; live compatibility testing remains pending." \
             --latest \
             --target "${GITHUB_SHA}"
